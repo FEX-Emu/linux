@@ -190,13 +190,14 @@ static inline bool is_compat_thread(struct thread_info *thread)
 
 static inline bool in_compat_syscall(void)
 {
-	return is_compat_task();
+	return is_compat_task() ||
+		current_thread_info()->aarch64_compat_syscall;
 }
 #define in_compat_syscall in_compat_syscall	/* override the generic impl */
 
 static inline bool thread_in_compat_syscall(struct thread_info *thread)
 {
-	return is_compat_thread(thread);
+	return is_compat_thread(thread) || thread->aarch64_compat_syscall;
 }
 
 #else /* !CONFIG_COMPAT */

@@ -42,6 +42,9 @@ struct thread_info {
 	void			*scs_base;
 	void			*scs_sp;
 #endif
+#ifdef CONFIG_COMPAT
+	bool			aarch64_compat_syscall;
+#endif
 };
 
 #define thread_saved_pc(tsk)	\
